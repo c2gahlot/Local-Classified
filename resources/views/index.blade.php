@@ -13,30 +13,50 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+
+                        @include('partials.search')
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Categories</div>
+
+                    <div class="panel-body">
                         <div class="row">
-                            {!! Form::open(['method'=>'GET']) !!}
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {!! Form::text('rc_number', null, ['class'=>'form-control', 'name'=>'city', 'id'=>'city', 'value'=> "{{ old('city') }}", 'placeholder'=>'City']) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    {!! Form::text('advertisements', null, ['class'=>'form-control', 'placeholder'=>'Search Advertisements']) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <a href="{{ route('index', [request()->getQueryString()]) }}">
-                                        <button class="form-control btn btn-success">Search</button>
-                                    </a>
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
+
+                            @if(!(request()->getQueryString()))
+                                <ul>
+                                    @foreach($categories  as $category)
+                                        <li>
+                                            <a href="{{route('index', ['category'=>$category->id])}}">
+                                                {{$category->category_name}}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            @else
+
+                                <ul>
+                                    @foreach($advertisements as $advertisement)
+                                        <li>
+                                            <a href="{{route('advertisement.show', ['id'=>$advertisement->id])}}">
+                                            {{$advertisement->name}}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

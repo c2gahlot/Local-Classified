@@ -2,27 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Advertisement;
 use Illuminate\Http\Request;
+use App\Repositories\HomeRepository;
 
 class HomeController extends Controller
 {
+    public $homeRepository;
+
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
-    public function __construct()
+    public function __construct(HomeRepository $homeRepository)
     {
-        $this->middleware('auth');
+        $this->homeRepository = $homeRepository;
     }
 
     /**
-     * Show the application dashboard.
+     * Show the index.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $categories = Category::get();
+
+        $advertisements = [];
+
+        if($request->getQueryString()){
+
+            $advertisements = $this->homeRepository->filter($request->all());
+        }
+
+        return view('index', compact('categories', 'advertisements'));
     }
 }

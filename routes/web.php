@@ -11,12 +11,15 @@
 |
 */
 
-Route::namespace('Store')->group(function () {
-
-    Route::get('/', 'ProductController@index')->name('index');
-
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('index');
+
+Route::group(['prefix' => 'adverisement', 'namespace' => 'Store'], function () {
+
+    Route::get('/create', 'AdvertisementController@create')->name('advertisement.create');
+
+    Route::post('/', 'AdvertisementController@store')->name('advertisement.store');
+
+    Route::get('/{id}', 'AdvertisementController@show')->name('advertisement.show');
+});
