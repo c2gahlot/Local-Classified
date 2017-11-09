@@ -18,6 +18,12 @@ class AdvertisementQueryFilter
 
     public function handle(){
 
+
+        if(isset($this->data['city'])){
+
+            $this->query = $this->query->where('city','like', '%'.$this->data['city'].'%');
+        }
+
         if(isset($this->data['category'])){
 
             if($this->data['category']!='0') {
@@ -25,9 +31,9 @@ class AdvertisementQueryFilter
             }
         }
 
-        if(isset($this->data['advertisement'])){
+        if(isset($this->data['title'])){
 
-            $this->query = $this->query->where('name','like', '%'.$this->data['advertisement'].'%');
+            $this->query = $this->query->where('title','like', '%'.$this->data['title'].'%');
         }
 
         return $this->query->get();

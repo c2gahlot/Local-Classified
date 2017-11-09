@@ -12,7 +12,7 @@
     </div>
     <div class="col-md-3">
         <div class="form-group">
-            {!! Form::text('advertisement', null, ['class'=>'form-control', 'placeholder'=>'Search Advertisement']) !!}
+            {!! Form::text('title', null, ['class'=>'form-control', 'placeholder'=>'Search Advertisement']) !!}
         </div>
     </div>
     <div class="col-md-3">

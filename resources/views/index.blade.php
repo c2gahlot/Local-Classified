@@ -23,12 +23,13 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Categories</div>
 
-                    <div class="panel-body">
-                        <div class="row">
 
-                            @if(!(request()->getQueryString()))
+                    @if(!(request()->getQueryString()))
+                        <div class="panel-heading">Categories</div>
+
+                        <div class="panel-body">
+                            <div class="row">
                                 <ul>
                                     @foreach($categories  as $category)
                                         <li>
@@ -38,22 +39,26 @@
                                         </li>
                                     @endforeach
                                 </ul>
+                            </div>
+                        </div>
+                    @else
+                        <div class="panel-heading">Advertisements</div>
 
-                            @else
-
+                        <div class="panel-body">
+                            <div class="row">
                                 <ul>
                                     @foreach($advertisements as $advertisement)
                                         <li>
                                             <a href="{{route('advertisement.show', ['id'=>$advertisement->id])}}">
-                                            {{$advertisement->name}}
+                                                {{$advertisement->title}}
                                             </a>
                                         </li>
                                     @endforeach
                                 </ul>
 
-                            @endif
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

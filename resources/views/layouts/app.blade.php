@@ -42,7 +42,6 @@
 
                     @else
                         <li><a href="{{ route('advertisement.create') }}">Post An Ad</a></li>
-                        <li><a href="{{ route('advertisement.create') }}">Chats</a></li>
                      @endguest
                 </ul>
 
@@ -59,6 +58,8 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('user.ads') }}">My Ads</a></li>
+                                <li><a href="{{ route('advertisement.create') }}">Chats</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -15,13 +15,14 @@ class CreateAdvertisementsTable extends Migration
     {
         Schema::create('advertisements', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('title');
+            $table->integer('price');
+            $table->enum('price_type', ['NEGOTIABLE', 'FIXED'])->default('NEGOTIABLE');
+            $table->integer('user_id')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->enum('status',['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->text('description');
             $table->string('city');
-            $table->string('district');
-            $table->string('state');
             $table->timestamps();
             $table->softDeletes();
         });
