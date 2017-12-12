@@ -42,7 +42,7 @@
 
                     @else
                         <li><a href="{{ route('advertisement.create') }}">Post An Ad</a></li>
-                     @endguest
+                        @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -59,7 +59,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('user.ads') }}">My Ads</a></li>
-                                <li><a href="{{ route('advertisement.create') }}">Chats</a></li>
+                                <li><a href="{{ route('message.index') }}">Chats</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -72,7 +72,7 @@
                                 </li>
                             </ul>
                         </li>
-                    @endguest
+                        @endguest
                 </ul>
             </div>
         </div>
@@ -83,7 +83,8 @@
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQGq8nJm1AA1sDnB5RnTLzeRGe4LoBn3g&libraries=places"></script>
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQGq8nJm1AA1sDnB5RnTLzeRGe4LoBn3g&libraries=places"></script>
 
 <script type="text/javascript">
     function initialize() {
@@ -95,6 +96,10 @@
         var autocomplete = new google.maps.places.Autocomplete(input, options);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<script type="text/javascript">
+
+    {{----}}
 </script>
 </body>
 </html>

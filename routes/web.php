@@ -17,20 +17,38 @@ Route::get('/', 'HomeController@index')->name('index');
 
 Route::group(['prefix' => 'adverisement', 'namespace' => 'Store'], function () {
 
-    Route::get('/create', 'AdvertisementController@create')->name('advertisement.create')->middleware('auth');
-
-    Route::post('/', 'AdvertisementController@store')->name('advertisement.store')->middleware('auth');
-
     Route::get('/{id}', 'AdvertisementController@show')->name('advertisement.show');
-
-    Route::get('/edit/{id}', 'AdvertisementController@edit')->name('advertisement.edit')->middleware('auth');
-
-    Route::put('/{id}', 'AdvertisementController@update')->name('advertisement.update')->middleware('auth');
 
 });
 
-Route::group(['prefix' => 'user', 'namespace' => 'Auth'], function () {
+Route::group(['prefix' => 'advertisement', 'namespace' => 'Store', 'middleware' => ['web','auth']], function () {
 
-    Route::get('/ads', 'UserController@ads')->name('user.ads')->middleware('auth');
+    Route::get('/create', 'AdvertisementController@create')->name('advertisement.create');
 
+    Route::post('/', 'AdvertisementController@store')->name('advertisement.store');
+
+    Route::get('/edit/{id}', 'AdvertisementController@edit')->name('advertisement.edit');
+
+    Route::put('/{id}', 'AdvertisementController@update')->name('advertisement.update');
+
+});
+
+Route::group(['namespace' => 'Auth', 'middleware' => ['web','auth']], function () {
+
+    Route::get('user/ads', 'UserController@ads')->name('user.ads');
+
+    Route::get('/message', 'UserController@index')->name('message.index');
+
+});
+
+Route::group(['namespace' => 'Chat'], function () {
+
+    Route::get('message/{id}', 'MessageController@chatHistory')->name('message.read');
+
+    Route::group(['prefix' => 'ajax', 'as' => 'ajax::'], function () {
+
+        Route::post('message/send', 'MessageController@ajaxSendMessage')->name('message.new');
+
+        Route::delete('message/delete/{id}', 'MessageController@ajaxDeleteMessage')->name('message.delete');
+    });
 });

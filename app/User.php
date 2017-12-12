@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Scopes\ChatScope;
+use YoHang88\LetterAvatar\LetterAvatar;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -33,5 +35,10 @@ class User extends Authenticatable
     public function advertisements()
     {
         return $this->hasMany(Advertisement::class);
+    }
+
+    public function getAvatarAttribute()
+    {
+        return new LetterAvatar($this->name);
     }
 }

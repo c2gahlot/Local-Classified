@@ -10,7 +10,7 @@ class AdvertisementRepository
     public function find($id)
     {
 
-        return Advertisement::findOrFail($id);
+        return Advertisement::with('user')->findOrFail($id);
     }
 
     public function save($data)
