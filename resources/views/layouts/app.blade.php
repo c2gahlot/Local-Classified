@@ -84,7 +84,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/store.js') }}"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQGq8nJm1AA1sDnB5RnTLzeRGe4LoBn3g&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('variable.googlePlacesKey') }}&libraries=places"></script>
 
 <script type="text/javascript">
     function initialize() {
