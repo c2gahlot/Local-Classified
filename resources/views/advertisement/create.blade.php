@@ -9,8 +9,9 @@
                     <div class="panel-heading">Create An Ad</div>
 
                     <div class="panel-body">
+                        {!! Form::open(['route'=> ['advertisement.store'], 'method' => 'POST']) !!}
                         <div class="row">
-                            {!! Form::open(['route'=> ['advertisement.store'], 'method' => 'POST']) !!}
+
                             <div class="col-md-3">
                                 <div class="form-group">
                                     {!! Form::text('title', null, ['class'=>'form-control', 'name'=>'title', 'id'=>'title', 'placeholder'=>'Title']) !!}
@@ -41,19 +42,41 @@
                                     {!! Form::select('category', array_except(categories(),0), null, ['class'=>'form-control', 'name'=>'category', 'id'=>'category']) !!}
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <div id="imagePreview"></div>
-                                    {!! Form::file('image1', ['class'=>'img', 'name'=>'image', 'id'=>'uploadFile']) !!}
+                                    <div id="imagePreview1"></div>
+                                    {!! Form::file('image1', ['class'=>'img', 'name'=>'image1', 'id'=>'uploadImage_1']) !!}
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div id="imagePreview2"></div>
+                                    {!! Form::file('image2', ['class'=>'img', 'name'=>'image2', 'id'=>'uploadImage_2']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div id="imagePreview3"></div>
+                                    {!! Form::file('image3', ['class'=>'img', 'name'=>'image3', 'id'=>'uploadImage_3']) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div id="imagePreview4"></div>
+                                    {!! Form::file('image4', ['class'=>'img', 'name'=>'image4', 'id'=>'uploadImage_4']) !!}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     {{ Form::submit('POST THIS AD', null, ['class'=>'form-control']) }}
                                 </div>
                             </div>
-                            {!! Form::close() !!}
                         </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -63,22 +86,3 @@
     @yield('scripts')
 
 @endsection
-
-@section('scripts')
-    $(function() {
-    $("#uploadFile").on("change", function()
-    {
-    var files = !!this.files ? this.files : [];
-    if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-
-    if (/^image/.test( files[0].type)){ // only image file
-    var reader = new FileReader(); // instance of the FileReader
-    reader.readAsDataURL(files[0]); // read the local file
-
-    reader.onloadend = function(){ // set image data as background of div
-    $("#imagePreview").css("background-image", "url("+this.result+")");
-    }
-    }
-    });
-    });
-@stop
